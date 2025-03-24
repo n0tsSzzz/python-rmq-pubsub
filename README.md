@@ -5,7 +5,7 @@
 
 1. Клонируйте репозиторий
 ```
-https://github.com/n0tsSzzz/python-rmq-pubsub
+git clone https://github.com/n0tsSzzz/python-rmq-pubsub
 ```
 
 2. Зайдите в папку с проектом и пропишите
