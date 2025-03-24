@@ -16,5 +16,5 @@ docker-compose up -d
 
 3. Для проверки бд
 ```
-docker exec -it software_prac-cassandra-1 cqlsh -e "USE pubsub; SELECT * FROM messages_1; SELECT * FROM messages_2;"
+docker exec -it python-rmq-pubsub-cassandra-1 cqlsh -e "USE pubsub; SELECT * FROM messages_1; SELECT * FROM messages_2;
 ```
