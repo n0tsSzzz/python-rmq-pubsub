@@ -11,12 +11,12 @@ git clone https://github.com/n0tsSzzz/python-rmq-pubsub
 2. Зайдите в папку с проектом и пропишите
 ```
 cd python-rmq-pubsub
-docker-compose up -d
+docker compose up -d
 ```
 
 3. Для проверки редиса
 ```
-docker-compose exec redis redis-cli KEYS "msg:*"
+docker compose exec redis redis-cli KEYS "msg:*"
 ```
 
 4. Для проверки бд
@@ -29,4 +29,4 @@ docker exec -it python-rmq-pubsub-cassandra-1 cqlsh -e "USE pubsub; SELECT * FRO
 - В редисе хранится ключ в виде msg:\<hash>, а в значение находися строка, которую считали
 - Повторной обработки нет, потому что результат кэшируется в редисе
 - TTL установлен на 24 часа
-- Проблема гонки решена с помощью aioredlock
+- Проблема гонки решена с помощью aioredlock(гарантирует, что сообщение обрабатывается только один раз и нет риска "вечной" блокировки)
