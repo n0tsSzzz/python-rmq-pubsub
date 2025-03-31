@@ -1,14 +1,15 @@
 import asyncio
+import os
+
 from aio_pika import DeliveryMode, ExchangeType, Message, connect_robust
 from msgpack import packb
-
-import os
 
 EXCHANGE_NAME = "pub/sub"
 
 
 async def main():
     print("Starting publisher")
+
     con = f"amqp://{os.getenv('RABBITMQ_USER')}:{os.getenv('RABBITMQ_PASSWORD')}@{os.getenv('RABBITMQ_HOST')}:{os.getenv('RABBITMQ_PORT')}/"
     connection = await connect_robust(con)
     print("Connected to RabbitMQ")
@@ -33,7 +34,7 @@ async def main():
                     print(f"Sent: {line.strip()}")
 
                 print('--- Sent full file data ---')
-                await asyncio.sleep(5)
+                await asyncio.sleep(10)
                 file.seek(0)
 
 

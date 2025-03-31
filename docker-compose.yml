@@ -10,6 +10,12 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7
+    command: redis-server --save 60 1 --maxmemory 1gb --maxmemory-policy volatile-ttl
+    ports:
+      - "6379:6379"
+
   cassandra:
     image: cassandra:4
     ports:
@@ -43,6 +49,7 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
+      - redis
       - cassandra
       - cassandra_migrations
 
@@ -56,6 +63,7 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
+      - redis
       - cassandra
       - cassandra_migrations
 
